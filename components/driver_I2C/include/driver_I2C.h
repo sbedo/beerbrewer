@@ -2,21 +2,18 @@
 #define DRIVER_I2C_H_
 
 #include <stdio.h>
-#include <driver/i2c.h>
-#include <esp_log.h>
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
-#include "freertos/semphr.h"
+#include "driver/i2c.h"
 #include "sdkconfig.h"
-#include "rom/ets_sys.h"
 
-#define I2C_MASTER_NUM           I2C_NUM_0
-#define I2C_MASTER_TX_BUF_LEN    0                     // disabled
-#define I2C_MASTER_RX_BUF_LEN    0                     // disabled
+#define I2C_MASTER_NUM           0                      /* I2C_NUM_0 */
+#define I2C_MASTER_TX_BUF_LEN    0                      /* disabled  */
+#define I2C_MASTER_RX_BUF_LEN    0                      /* disabled  */
 #define I2C_MASTER_FREQ_HZ       100000
-#define I2C_MASTER_SDA_IO        CONFIG_I2C_MASTER_SDA
-#define I2C_MASTER_SCL_IO        CONFIG_I2C_MASTER_SCL
+#define I2C_MASTER_SDA_IO        21
+#define I2C_MASTER_SCL_IO        22
+#define I2C_MASTER_TIMEOUT_MS    1000
 #define ACK_EN                   true
+
 
 // Pin mappings
 // P0 -> RS
