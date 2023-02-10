@@ -8,8 +8,10 @@
 #include "driver_I2C.h"
 #include "HD44780.h"
 
+static const char *LCD_TAG = "LCD";
+static const char *I2C_TAG = "I2C";
 
-void hd44780_DemoTask(void* param)
+void hd44780_Handler(void* param)
 {
     char buffer[10];
     float num = 12.34;
@@ -18,6 +20,7 @@ void hd44780_DemoTask(void* param)
     lcd_init();
 
     while (true) {
+        lcd_clear();
         lcd_clear();
 
         sprintf(buffer, "val=%.2f", num);
@@ -39,11 +42,18 @@ void hd44780_DemoTask(void* param)
 
 void app_main(void)
 {
-    I2C_init();
+    esp_err_t err = ESP_OK;
 
-   
+    err = I2C_init();
+    if(err != ESP_OK)
+    {
+        ESP_LOGI(I2C_TAG, "I2C init failed", err);
+    }
 
-    xTaskCreate(hd44780_DemoTask, "Demo Task", 2048, NULL, 5, NULL);
+    //
+    // Create Tasks
+    //
+    xTaskCreate(hd44780_Handler, "Demo Task", 2048, NULL, 5, NULL);
 
     while(1)
     {

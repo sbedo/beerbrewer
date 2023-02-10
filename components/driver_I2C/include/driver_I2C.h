@@ -28,6 +28,6 @@
 esp_err_t I2C_init(void);
 bool I2C_is_initialized();
 SemaphoreHandle_t* I2C_get_semaphore();
-esp_err_t I2C_send_byte(uint8_t address, uint8_t data);
+esp_err_t I2C_send_data(uint8_t address, uint8_t* data, uint8_t length);
 
 #endif
