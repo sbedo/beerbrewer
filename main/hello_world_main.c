@@ -8,11 +8,8 @@
 #include "esp_log.h"
 
 #include "driver_I2C.h"
-// #include "HD44780.h"
 #include "display_controller.h"
 
-static const char *LCD_TAG = "LCD";
-static const char *I2C_TAG = "I2C";
 static const char *MAIN_TAG = "main";
 
 void app_main(void)
@@ -24,12 +21,12 @@ void app_main(void)
     err = I2C_init();
     if(err != ESP_OK)
     {
-        ESP_LOGI(I2C_TAG, "I2C init failed", err);
+        ESP_LOGI(MAIN_TAG, "I2C init failed", err);
     }
 
     display_init();
     
-    
+
     //
     // Create Tasks
     //

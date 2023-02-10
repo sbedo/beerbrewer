@@ -4,7 +4,7 @@
 #include "unistd.h"
 
 #include "driver_I2C.h"
-#include "HD44780.h"
+#include "driver_HD44780.h"
 
 static const char *TAG = "LCD";
 

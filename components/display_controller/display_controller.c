@@ -8,7 +8,7 @@
 #include "freertos/queue.h"
 
 #include "display_controller.h"
-#include "hd44780.h"
+#include "driver_hd44780.h"
 
 static const char *DISPLAY_TAG = "display";
 
@@ -114,23 +114,16 @@ void display_handler(void* param) {
 
     display_clear_screen();
 
-    lcd_put_cur(0,0);
-    lcd_send_string("testMessage");
-
     while(1) {
-        ESP_LOGI(DISPLAY_TAG, "Hello from task %d", tmp_cnt++ );
-
+        
         if(xQueueDisplayData != NULL) {
             if(pdTRUE == xQueueReceive(xQueueDisplayData, &display_context_to_write, portMAX_DELAY ))
             {
-                lcd_put_cur(display_context_to_write.row, display_context_to_write.col);
-                ESP_LOGI(DISPLAY_TAG, "row: %d col: %d ",display_context_to_write.row, display_context_to_write.col );
-                
+                lcd_put_cur(display_context_to_write.row, display_context_to_write.col);               
                 lcd_send_string(display_context_to_write.data);
-                ESP_LOGI(DISPLAY_TAG, "context: %s", display_context_to_write.data);
             }
         } else {
-            ESP_LOGI(DISPLAY_TAG, "xQueueDisplayData is NULL");
+            ESP_LOGE(DISPLAY_TAG, "xQueueDisplayData is NULL");
         }
 
          vTaskDelay(100 / portTICK_PERIOD_MS);
