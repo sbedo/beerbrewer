@@ -25,6 +25,11 @@
 #define hd44780_FUNCTION_SET_4BIT   0x28        // 4-bit data, 2-line display, 5 x 7 font
 #define hd44780_SET_CURSOR          0x80        // set cursor position
 
+#define SLAVE_ADDRESS_LCD           0x4E>>1 // change this according to ur setup
+
+#define hd44780_rows                4
+#define hd44780_cols                16
+
 void lcd_init (void);
 void lcd_send_cmd (char cmd);
 void lcd_put_cur(int row, int col);
