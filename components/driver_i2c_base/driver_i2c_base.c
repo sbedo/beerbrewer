@@ -4,7 +4,7 @@
 // #include "driver/gpio.h"
 // #include "driver/i2c.h"
 
-#include "driver_i2c.h"
+#include "driver_i2c_base.h"
 
 static SemaphoreHandle_t i2c_semaphore = NULL;
 

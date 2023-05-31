@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "i2c_handler.h"
-#include "driver_i2c.h"
+#include "driver_i2c_base.h"
 
 void func(void)
 {
