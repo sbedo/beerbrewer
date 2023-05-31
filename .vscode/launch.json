@@ -4,8 +4,7 @@
     {
       "type": "espidf",
       "name": "Launch",
-      "request": "launch",
-      "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+      "request": "launch"
     }
   ]
 }
